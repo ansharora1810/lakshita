@@ -1,5 +1,15 @@
 /** @ts-ignore */
 const confetti = window.confetti;
+// Preload the error sound so it plays instantly when needed
+const wrongSound = new Audio("assets/incorrect-selection.mp3")
+const correctSound1 = new Audio("assets/correct-selection-1.mp3")
+const correctSound2 = new Audio("assets/correct-selection-2.mp3")
+correctSound2.volume = 0.2
+const suspenceSound = new Audio("assets/suspence.mp3")
+suspenceSound.loop = true  // Repeat indefinitely until paused
+const loveSound = new Audio("assets/love.mp3")
+loveSound.loop = true  // Loop the happy music on the final page
+let initialSuspenseMusicPlayed = false
 
 /**
  * Gets the current page number from a page element
@@ -25,14 +35,6 @@ const getNextPage = (page) => {
   const nextPageClass = "page-" + nextPageNumber.toString();
   return document.querySelector('.' + nextPageClass)
 };
-
-// Preload the error sound so it plays instantly when needed
-const wrongSound = new Audio("assets/incorrect-selection.mp3")
-const correctSound = new Audio("assets/correct-selection.mp3")
-const suspenceSound = new Audio("assets/suspence.mp3")
-suspenceSound.loop = true  // Repeat indefinitely until paused
-const loveSound = new Audio("assets/love.mp3")
-loveSound.loop = true  // Loop the happy music on the final page
 
 // Plays the suspense sound (only if it hasn't started yet)
 const playSuspenseSound = () => {
@@ -66,9 +68,17 @@ const changePage = () => {
 const getCorrectButtonAndAddEventListener = () => {
   const button = activePage.querySelector(".correct-button")
   button.addEventListener("click", async () => {
+    console.log("Yayyy")
+    // Pause suspense sound
+    suspenceSound.pause()
+
     // Play sound
-    correctSound.currentTime = 0
-    correctSound.play()
+    correctSound1.currentTime = 0
+    correctSound1.play()
+
+    // Play sound
+    correctSound2.currentTime = 0
+    correctSound2.play()
 
     // Trigger confetti
     confetti({
@@ -82,6 +92,9 @@ const getCorrectButtonAndAddEventListener = () => {
 
     // Change page
     changePage()
+
+    // Play suspense sound
+    suspenceSound.play()
   })
   // button.addEventListener("click", () => {
   //   suspenceSound.pause()
@@ -139,5 +152,8 @@ let activePage = document.querySelector(".active");
 let correctButton = getCorrectButtonAndAddEventListener()
 let incorrectButtons = getIncorrectButtonsAndAddEventListener()
 document.addEventListener("click", () => {
-  playSuspenseSound()
+  if (!initialSuspenseMusicPlayed) {
+    playSuspenseSound()
+    initialSuspenseMusicPlayed = true
+  }
 })
