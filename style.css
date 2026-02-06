@@ -11,13 +11,17 @@
     overflow: hidden;
 }
 
+html, body {
+    overflow: hidden;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #fee3ee;
-    overflow: hidden;
+    position: relative;
 }
 
 .section {
