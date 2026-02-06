@@ -22,9 +22,6 @@ const getCurrentPageNumber = (page) => {
  */
 const getNextPage = (page) => {
   const nextPageNumber = getCurrentPageNumber(page) + 1
-  if (nextPageNumber === 5) {
-    return null
-  }
   const nextPageClass = "page-" + nextPageNumber.toString();
   return document.querySelector('.' + nextPageClass)
 };
@@ -34,6 +31,8 @@ const wrongSound = new Audio("assets/incorrect-selection.mp3")
 const correctSound = new Audio("assets/correct-selection.mp3")
 const suspenceSound = new Audio("assets/suspence.mp3")
 suspenceSound.loop = true  // Repeat indefinitely until paused
+const loveSound = new Audio("assets/love.mp3")
+loveSound.loop = true  // Loop the happy music on the final page
 
 // Plays the suspense sound (only if it hasn't started yet)
 const playSuspenseSound = () => {
@@ -45,12 +44,18 @@ const playSuspenseSound = () => {
 const changePage = () => {
   if (!activePage) return; // Type guard for the callback
   const nextPage = getNextPage(activePage);
-  if (!nextPage) return
   activePage.classList.remove("active");
   activePage.classList.add("visited");
   nextPage.classList.remove("hidden");
   nextPage.classList.add("active");
   activePage = nextPage
+
+  // If we reached the last page (page-5), switch to happy music
+  if (nextPage.classList.contains("page-5")) {
+    suspenceSound.pause()
+    loveSound.play()
+  }
+
   correctButton = getCorrectButtonAndAddEventListener()
   incorrectButtons = getIncorrectButtonsAndAddEventListener()
 }
