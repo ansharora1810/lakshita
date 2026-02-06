@@ -1,4 +1,5 @@
-const noButton = document.querySelector(".no-button")
+const page1 = document.querySelector(".page-1")
+const noButton = page1.querySelector(".no-button")
 const DANGER_DISTANCE = 50
 const FIRST_PAGE_IMAGE_CHANGE_MOVES = 100
 
@@ -8,7 +9,7 @@ let offsetY = 0
 let moves = 0
 let imageChanged = false
 
-document.addEventListener('mousemove', (event) => {
+page1.addEventListener('mousemove', (event) => {
     const mouseX = event.clientX
     const mouseY = event.clientY
 
@@ -23,7 +24,7 @@ document.addEventListener('mousemove', (event) => {
     if (distance < DANGER_DISTANCE) {
         moves += 1
         if(!imageChanged && moves > FIRST_PAGE_IMAGE_CHANGE_MOVES) {
-            const image = document.querySelector(".first-page-image")
+            const image = document.querySelector(".main-image")
             image.src = "assets/knife.gif"
             image.style.maxHeight = "100%"
             imageChanged = true
@@ -42,15 +43,15 @@ document.addEventListener('mousemove', (event) => {
 
         // Bounce back if hitting edge
         if (offsetX > maxOffsetX) {
-            offsetX = maxOffsetX - (offsetX - maxOffsetX)  // bounce back
+            offsetX = maxOffsetX - (offsetX - maxOffsetX)
         } else if (offsetX < -maxOffsetX) {
-            offsetX = -maxOffsetX - (offsetX + maxOffsetX)  // bounce back
+            offsetX = -maxOffsetX - (offsetX + maxOffsetX)
         }
 
         if (offsetY > maxOffsetY) {
-            offsetY = maxOffsetY - (offsetY - maxOffsetY)  // bounce back
+            offsetY = maxOffsetY - (offsetY - maxOffsetY)
         } else if (offsetY < -maxOffsetY) {
-            offsetY = -maxOffsetY - (offsetY + maxOffsetY)  // bounce back
+            offsetY = -maxOffsetY - (offsetY + maxOffsetY)
         }
 
         // Apply the offset (combine centering + movement in one transform)

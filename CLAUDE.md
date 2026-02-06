@@ -111,3 +111,7 @@ Should explain:
 - Explain WHY something works, not just HOW
 - Encourage experimentation
 - Validate questions (no question is too basic)
+
+## Development Workflow
+- **IMPORTANT**: Check the hosted website at http://127.0.0.1:5500/ before and after any changes you make or suggest
+- Live reloading is enabled, so the page reflects changes in real-time

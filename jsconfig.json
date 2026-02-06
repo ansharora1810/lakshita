@@ -1,0 +1,83 @@
+{
+  "compilerOptions": {
+    // === BASIC SETTINGS ===
+
+    // Check JavaScript files for errors
+    "checkJs": true,
+
+    // Target modern browsers
+    "target": "ES2020",
+
+    // The DOM library gives you autocomplete for document, window, etc.
+    "lib": ["ES2020", "DOM"],
+
+    // Better module resolution
+    "moduleResolution": "node",
+
+    // Allow using modern JavaScript features
+    "allowJs": true,
+
+    // === STRICT TYPE CHECKING ===
+    // (These are the most important for catching bugs!)
+
+    // Enable all strict type checking options
+    "strict": true,
+
+    // Catch common mistakes with null/undefined
+    "strictNullChecks": false,
+
+    // Be strict about function types
+    "strictFunctionTypes": true,
+
+    // Ensure 'bind', 'call', and 'apply' methods have correct arguments
+    "strictBindCallApply": true,
+
+    // Report errors on 'this' expressions with an implied 'any' type
+    "noImplicitThis": true,
+
+    // Emit 'use strict' in generated code
+    "alwaysStrict": true,
+
+    // === ADDITIONAL STRICT CHECKS ===
+
+    // Make array/object index access return "type | undefined"
+    // Catches: array[5] which might not exist
+    "noUncheckedIndexedAccess": true,
+
+    // Warn about unused local variables
+    "noUnusedLocals": true,
+
+    // Warn about unused function parameters
+    "noUnusedParameters": true,
+
+    // Report error when not all code paths return a value
+    "noImplicitReturns": true,
+
+    // Report errors for fallthrough cases in switch statements
+    "noFallthroughCasesInSwitch": true,
+
+    // Don't allow unreachable code
+    "allowUnreachableCode": false,
+
+    // Don't allow unused labels
+    "allowUnusedLabels": false,
+
+    // Raise error on expressions and declarations with an implied 'any' type
+    "noImplicitAny": true,
+
+    // === CODE QUALITY ===
+
+    // Skip type checking of declaration files (faster)
+    "skipLibCheck": true,
+
+    // Ensure proper casing in import statements
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "*.js",
+    "**/*.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
