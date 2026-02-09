@@ -1,5 +1,6 @@
 const page1 = document.querySelector(".page-1")
 const noButton = page1.querySelector(".no-button")
+const yesButton = page1.querySelector(".yes-button")
 const DANGER_DISTANCE = 50
 const FIRST_PAGE_IMAGE_CHANGE_MOVES = 100
 
@@ -8,6 +9,7 @@ let offsetX = 0
 let offsetY = 0
 let moves = 0
 let imageChanged = false
+let yesButtonScale = 1  // Track the scale of the yes button
 
 page1.addEventListener('mousemove', (event) => {
     const mouseX = event.clientX
@@ -56,6 +58,11 @@ page1.addEventListener('mousemove', (event) => {
 
         // Apply the offset (combine centering + movement in one transform)
         noButton.style.transform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`
+
+        // Gradually increase the yes button size
+        yesButtonScale += 0.002  // Increase by a tiny amount each time
+        // @ts-ignore
+        yesButton.style.transform = `scale(${yesButtonScale})`
 
         console.log("ahhhhhhhh")
     }
